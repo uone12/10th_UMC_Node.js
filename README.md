@@ -1,6 +1,6 @@
 # 🍃 10th_Node.js
 
-INHA UMC 10th_Node.js 미션, 키워드 인증 레포지터리입니다!
+SMWU UMC 10th_Node.js 미션, 키워드 인증 레포지터리입니다!
 
 ## 💻 Member
 
