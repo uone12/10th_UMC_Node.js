@@ -1,44 +1,58 @@
-## 💻 UMC Node.js Study ✏️
+# 🍃 10th_Node.js
 
-### 📥 프로젝트 시작하기
+INHA UMC 10th_Node.js 미션, 키워드 인증 레포지터리입니다!
 
-- 자신이 원하는 위치에 자신의 파트 레파지토리 중 자신의 깃허브 닉네임 branch를 클론해줍니다
-    
-    🖥️ `git clone -b {브랜치이름} —-single-branch {저장소 url}`
-    
-    ps. 작업 도중 생길 문제를 대비해서 저희는 본인의 브랜치만 클론 받는 방식으로 진행하려 합니다. 하지만 나중에 프로젝트를 진행할 때는 main branch를 클론 받아, 특정 branch에서 작업하는 방식으로 진행이 될 것입니다. 이때에는 반드시 main branch가 아닌 자신이 작업하기로한 branch에서만 작업하셔야 합니다‼️
-    
-- 자신의 깃허브 닉네임 폴더 내부를 경로로 미션 진행하시면 됩니다
+## 💻 Member
 
-### 📌 commit 하기
+1. 원이/정채원
+2. 와와/조현영
+3. 키티/백은서
+4. 여울/임수정
 
-- 파트 별로 작업을 끝냈거나 더 작은 단위로 작업을 끝낼 때마다 add 후에 commit을 해 주는 게 좋아요
-- 반드시 자신의 브랜치에서만 commit을 해주세요‼️
-- commit 형식
-    - [Feat]: 새로운 기능 추가
-    - [Fix]: 버그 수정
-    - [Docs]: 문서 수정
-    - [Style]: 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우
-    - [Refactor]: 코드 리펙토링
-    - [Test]: 테스트 코드, 리펙토링 테스트 코드 추가
-    - [Chore]: 빌드 업무 수정, 패키지 매니저 수정
-    
-    🖥️ `git add 자신이 수정한 파일명`
-    
-    🖥️ `git commit -m “[Feat(닉네임/이름)] ㅇㅇ기능 추가”`
-    
+## 📁 디렉토리 구조
 
-### 📤 Github 레파지토리에 적용하기
+```bash
+.
+├── README.md
+└── mission
+    └── README.md
+```
 
-- 해당 주차의 강의를 듣거나 작업을 모두 끝냈다면, 프로젝트 변경 사항을 remote repository(github repository)에 push 합니다.
-    
-    🖥️ `git push origin 본인의 브랜치명(깃허브 닉네임)`
-    
-- push를 완료했다면 스터디 repository에서 pull request를 진행합니다
-    
-    (자신의 브랜치에 push 후에 github 페이지 들어오면 아마 뜰거에요!)
-    
-- PR(Pull Request)시 메세지 제목은 다음과 같이 `[이름/닉네임] ㅇ주차 정리내용 제출.` 라고 적은 후 `create pull request` 버튼을 눌러주세요
-- PR : `base: [master]` <- `compare: [본인 github 아이디]`
+### mission 폴더
 
-❤️ 본인의 폴더안에 있는 [README.md](http://README.md) 파일은 자유롭게 사용해주세요🙂
+미션을 진행하신 내용을 정리한 파일을 올리는
+폴더입니다.
+
+매 주차별 정리 내용은 mission/chapter00/README.md 파일에 작성 부탁드립니다!!
+
+해당 파일에는 자유로운 형식으로 자신의 미션을 정리해주세요!!
+
+## 🌳 branch 규칙
+
+```bash
+├─main
+    ├─서키/main
+ ...
+```
+
+1. `닉네임/main 브랜치`가 기본 브랜치로 pr 보낼 때 root 브랜치(main 브랜치)가 아닌 닉네임/main 브랜치로 올립니다.
+2. 매주 워크북, 실습, 그리고 미션은 각자의 닉네임/main 브랜치를 base 브랜치로 삼아 fork한 레포지터리 에서 base branch에 pull request를 생성합니다.
+3. 파트장의 approve를 받으면, pr을 머지하고 이때, pr 제목은
+   `[n주차/닉네임] {키워드 or 미션} 제출합니다` 형식으로 작성합니다.
+
+## 🔖 커밋 컨벤션
+
+예시 ) `mission: 0주차 미션 인증`
+
+| Message  | 설명                  |
+| :------: | :-------------------- |
+| mission  | 미션 수행             |
+| practice | 실습 수행             |
+| workbook | 워크북 정리           |
+|   fix    | 버그 수정             |
+|   docs   | 문서 수정             |
+| comment  | 주석 추가 및 변경     |
+|   test   | 테스트 코드 추가      |
+|  rename  | 파일 혹은 폴더명 수정 |
+|  remove  | 파일 혹은 폴더 삭제   |
+|  chore   | 기타 변경사항         |
