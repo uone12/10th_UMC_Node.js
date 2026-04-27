@@ -42,3 +42,4 @@ SELECT * FROM member;
 아래 이미지는 로컬 MySQL에서 실제로 DB와 테이블을 생성하고 확인한 화면입니다.
 
 ![DB 실행 결과](./images/result1.png)
+##완료
