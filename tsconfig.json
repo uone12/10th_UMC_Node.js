@@ -1,50 +1,29 @@
 {
   "compilerOptions": {
-    // File Layout
     "rootDir": "./src",
     "outDir": "./dist",
 
-    // Environment Settings
     "module": "nodenext",
-    "moduleResolution": "nodeNext",
+    "moduleResolution": "nodenext",
     "target": "esnext",
-    //"types": ["node", "express", "cors"],
-    // For nodejs:
     "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
 
-    // Other Outputs
-    "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
+    "sourceMap": true,
 
-    // Stricter Typechecking Options
+    "strict": true,
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+    "exactOptionalPropertyTypes": false,
 
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
 
-    /* 엄격한 검사 옵션 (에러를 미리 잡는 핵심!) */
-    "strict": true,               
-    "noUncheckedIndexedAccess" : true, 
-    /*"jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",*/
-    /* 기타 추천 옵션 */
-    "skipLibCheck": true,         
-    "esModuleInterop": true,      
-    "forceConsistentCasingInFileNames": true, 
-    "sourceMap": true   
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*"],        
-  "exclude": ["10th_UMC_Node.js/node_modules", "dist"]
+
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
