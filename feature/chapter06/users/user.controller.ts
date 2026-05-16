@@ -1,0 +1,148 @@
+import { Request, Response, NextFunction } from "express";
+import { StatusCodes } from "http-status-codes";
+import {
+  userSignUp,
+  listMyReviews,
+  listMyProgressMissions,
+} from "../services/user.service.js";
+import { UserSignUpRequest } from "../dtos/user.dto.js";
+
+const getCursor = (cursor: unknown): number | null => {
+  if (typeof cursor !== "string") {
+    return null;
+  }
+
+  const parsedCursor = parseInt(cursor, 10);
+
+  if (Number.isNaN(parsedCursor)) {
+    return null;
+  }
+
+  return parsedCursor;
+};
+
+const isValidGender = (gender: unknown): gender is string => {
+  return gender === "MALE" || gender === "FEMALE";
+};
+
+const isValidDate = (date: unknown): date is string => {
+  if (typeof date !== "string") {
+    return false;
+  }
+
+  return !Number.isNaN(new Date(date).getTime());
+};
+
+const validateSignUpBody = (body: Partial<UserSignUpRequest>) => {
+  if (!body.email || typeof body.email !== "string") {
+    return "email은 필수이며 문자열이어야 합니다.";
+  }
+
+  if (!body.name || typeof body.name !== "string") {
+    return "name은 필수이며 문자열이어야 합니다.";
+  }
+
+  if (!isValidGender(body.gender)) {
+    return "gender는 MALE 또는 FEMALE이어야 합니다.";
+  }
+
+  if (!isValidDate(body.birth)) {
+    return "birth는 올바른 날짜 형식이어야 합니다.";
+  }
+
+  if (!body.address || typeof body.address !== "string") {
+    return "address는 필수이며 문자열이어야 합니다.";
+  }
+
+  if (
+    body.detailAddress !== undefined &&
+    body.detailAddress !== null &&
+    typeof body.detailAddress !== "string"
+  ) {
+    return "detailAddress는 문자열이어야 합니다.";
+  }
+
+  if (!body.phoneNumber || typeof body.phoneNumber !== "string") {
+    return "phoneNumber는 필수이며 문자열이어야 합니다.";
+  }
+
+  if (!Array.isArray(body.preferences)) {
+    return "preferences는 배열이어야 합니다.";
+  }
+
+  if (body.preferences.some((preference) => typeof preference !== "number")) {
+    return "preferences의 값은 숫자여야 합니다.";
+  }
+
+  return null;
+};
+
+export const handleUserSignUp = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const validationError = validateSignUpBody(req.body);
+
+    if (validationError) {
+      res.status(StatusCodes.BAD_REQUEST).json({
+        message: validationError,
+      });
+      return;
+    }
+
+    const user = await userSignUp(req.body);
+    res.status(StatusCodes.CREATED).json(user);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const handleListMyReviews = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const userId = parseInt(req.params.userId, 10);
+    const cursor = getCursor(req.query.cursor);
+
+    if (Number.isNaN(userId)) {
+      res.status(StatusCodes.BAD_REQUEST).json({
+        message: "userId가 올바르지 않습니다.",
+      });
+      return;
+    }
+
+    const reviews = await listMyReviews(userId, cursor);
+
+    res.status(StatusCodes.OK).json(reviews);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const handleListMyProgressMissions = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const userId = parseInt(req.params.userId, 10);
+    const cursor = getCursor(req.query.cursor);
+
+    if (Number.isNaN(userId)) {
+      res.status(StatusCodes.BAD_REQUEST).json({
+        message: "userId가 올바르지 않습니다.",
+      });
+      return;
+    }
+
+    const missions = await listMyProgressMissions(userId, cursor);
+
+    res.status(StatusCodes.OK).json(missions);
+  } catch (err) {
+    next(err);
+  }
+};
