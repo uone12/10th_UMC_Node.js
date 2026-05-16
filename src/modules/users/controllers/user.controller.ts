@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Route, Tags } from "tsoa";
+import { Body, Controller, Post, Route, Tags, Response } from "tsoa";
 import { UserSignUpRequest, UserSignUpResponse } from "../dtos/user.dto.js";
 import { userSignUp } from "../services/user.service.js";
 
@@ -6,6 +6,8 @@ import { userSignUp } from "../services/user.service.js";
 @Tags("Users") // Swagger 태그
 export class UserController extends Controller {
   @Post("signup") // 엔드포인드 정의
+  @Response(200, "회원가입 성공")
+  @Response(400, "중복 이메일 에러")
   public async handleUserSignUp(
     @Body() body: UserSignUpRequest,
   ): Promise<UserSignUpResponse> {

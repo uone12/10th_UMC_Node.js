@@ -5,8 +5,9 @@
     "src/modules/**/*.controller.ts"
   ],
   "spec": {
-    "outputDirectory": "build",
-    "specVersion": 3
+    "outputDirectory": "dist",
+    "specVersion": 3,
+    "basePath": "/api/v1"
   },
   "routes": {
     "routesDir": "src",

@@ -24,7 +24,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
   next();
 });
-
 // 2. 미들웨어 설정
 app.use(cors()); // cors 방식 허용
 app.use(express.static("public")); // 정적 파일 접근
@@ -32,7 +31,6 @@ app.use(express.json()); // request의 본문을 json으로 해석할 수 있도
 app.use(express.urlencoded({ extended: false })); // 단순 객체 문자열 형태로 본문 데이터 해석
 
 RegisterRoutes(app);
-
 /**
  * 전역 오류를 처리하기 위한 미들웨어
  */
@@ -76,3 +74,23 @@ app.get("/test", (req, res) => {
 app.listen(3000, () => {
   console.log("서버 실행 중");
 }); */
+
+// src/index.ts
+import swaggerUi from "swagger-ui-express";
+// ESM 환경에서는 JSON 파일을 가져올 때 아래와 같이 처리합니다.
+import path from "path";
+import fs from "fs";
+
+// ... 
+
+// 1. TSOA가 생성한 swagger.json 읽어오기
+const swaggerFile = JSON.parse(
+  fs.readFileSync(path.resolve("dist/swagger.json"), "utf8")
+);
+
+// 2. Swagger UI 연결
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Swagger docs: http://localhost:${port}/docs`);
+});
